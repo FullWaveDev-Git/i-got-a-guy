@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "i-got-a-guy-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["server.py"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}
