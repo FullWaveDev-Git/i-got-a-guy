@@ -1,4 +1,16 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/yard",
+      "destination": "https://igotaguyremodel.com?utm_source=yard_sign&utm_medium=qr&utm_campaign=yard",
+      "permanent": false
+    },
+    {
+      "source": "/card",
+      "destination": "https://igotaguyremodel.com?utm_source=business_card&utm_medium=qr&utm_campaign=card",
+      "permanent": false
+    }
+  ]
 }
