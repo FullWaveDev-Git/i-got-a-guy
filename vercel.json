@@ -4,14 +4,14 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "yard.igotaguy.com" }],
-      "destination": "https://igotaguy.com?utm_source=yard_sign&utm_medium=qr&utm_campaign=yard",
+      "has": [{ "type": "host", "value": "yard.igotaguyremodel.com" }],
+      "destination": "https://igotaguyremodel.com?utm_source=yard_sign&utm_medium=qr&utm_campaign=yard",
       "permanent": false
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "card.igotaguy.com" }],
-      "destination": "https://igotaguy.com?utm_source=business_card&utm_medium=qr&utm_campaign=card",
+      "has": [{ "type": "host", "value": "card.igotaguyremodel.com" }],
+      "destination": "https://igotaguyremodel.com?utm_source=business_card&utm_medium=qr&utm_campaign=card",
       "permanent": false
     }
   ]
