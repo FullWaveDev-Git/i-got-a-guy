@@ -116,15 +116,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
           </div>
         </div>
-        <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.success-msg').style.display='block';">
+        <form id="contact-form" class="contact-form">
           <input type="text" name="name" placeholder="Full name" required>
           <input type="email" name="email" placeholder="example@email.com" required>
           <input type="tel" name="phone" placeholder="(123) 456 - 789">
           <input type="text" name="subject" placeholder="ex. Services">
           <textarea name="message" placeholder="Write your message here..." required></textarea>
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
-          <p class="success-msg" style="display:none;color:var(--red);font-weight:700;text-align:center;">Thank you! We'll get back to you soon.</p>
+          <p class="success-msg" style="display:none;color:var(--green,#2ecc71);font-weight:700;text-align:center;">Thank you! We'll get back to you soon.</p>
+          <p class="error-msg" style="display:none;color:var(--red);font-weight:700;text-align:center;">Something went wrong. Please try again or call us directly.</p>
         </form>
+        <script>
+          (function () {
+            const ENDPOINT = 'https://dash.fullwavedev.com/api/forms';
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', async function (e) {
+              e.preventDefault();
+              const btn = form.querySelector('button[type="submit"]');
+              const success = form.querySelector('.success-msg');
+              const error = form.querySelector('.error-msg');
+              success.style.display = 'none';
+              error.style.display = 'none';
+              btn.disabled = true;
+              const originalText = btn.textContent;
+              btn.textContent = 'Sending...';
+              const data = Object.fromEntries(new FormData(form).entries());
+              const params = new URLSearchParams(window.location.search);
+              const utm_source = params.get('utm_source');
+              try {
+                const res = await fetch(ENDPOINT, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    formName: 'Contact Form',
+                    data,
+                    ...(utm_source ? { utm_source } : {}),
+                  }),
+                });
+                if (!res.ok) throw new Error('Submission failed');
+                success.style.display = 'block';
+                form.reset();
+              } catch (err) {
+                error.style.display = 'block';
+              } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+              }
+            });
+          })();
+        </script>
       </div>
     </div>
   </section>
